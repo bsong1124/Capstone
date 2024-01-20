@@ -11,7 +11,7 @@ const Main = () => {
         <Route path='/' element={<Home/>}/>
         <Route path='/portfolio' element={<Portfolio/>}/>
         <Route path='/profile' element={<Profile/>}/>
-        <Route path='/coins' element={<coins/>}/>
+        <Route path='/coins' element={<Coins/>}/>
       </Routes>
       <h1>Main Comp</h1>
     </div>
