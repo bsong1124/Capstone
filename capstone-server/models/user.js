@@ -10,5 +10,13 @@ const UserSchema = new Schema({
     }]
 })
 
-module.exports = mongoose.model("User", UserSchema)
+const CoinsSchema = new Schema({
+    coinName: String,
+    coinTicker: String,
+  });
+
+module.exports = {
+    User: mongoose.model('User', UserSchema),
+    Coins: mongoose.model('Coins', CoinsSchema)
+}
 
