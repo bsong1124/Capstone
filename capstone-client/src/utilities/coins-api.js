@@ -33,18 +33,33 @@ export async function getLayerOneCoins() {
 }
 
 export async function getSearchCoins(q) {
-    const searchResponse = await fetch(`${config.BASE_URL}/search?q=${q}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (searchResponse.ok) {
-      const searchData = await searchResponse.json();
+  const searchResponse = await fetch(`${config.BASE_URL}/search?q=${q}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (searchResponse.ok) {
+    const searchData = await searchResponse.json();
     //   console.log({ searchData });
-      return searchData.coins;
-    } else {
-      console.log(err.message);
-    }
+    return searchData.coins;
+  } else {
+    console.log(err.message);
   }
+}
 
+export async function getPortfolio(id) {
+  const portfolioResponse = await fetch("", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if(portfolioResponse.ok){
+    const portfolioData = await portfolioResponse.json()
+    return portfolioData
+  }else{
+    console.log(err.message)
+  }
+}

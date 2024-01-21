@@ -5,11 +5,12 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 const authId = user.sub.substring(user.sub.indexOf("|") + 1);
 const Portfolio = () => {
   const { user, isAuthenticated } = useAuth0();
+  const [portfolio, setPortfolio] = useState([])
 
-  const getPortfolio = () => {
+  const getPortfolio = async () => {
     try {
       const authId = user.sub.substring(user.sub.indexOf("|") + 1);
-      
+      const portfolioResponse = await getMyPortfolio()
     } catch (err) {
       console.log(err);
     }
