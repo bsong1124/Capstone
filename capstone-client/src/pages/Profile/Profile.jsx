@@ -4,9 +4,12 @@ import { Navigate } from "react-router";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [profile, setProfile] = useState([])
 
   if (!isAuthenticated) {
     return <Navigate to="/" />;
+  }else{
+    
   }
 
   if (isLoading) {
