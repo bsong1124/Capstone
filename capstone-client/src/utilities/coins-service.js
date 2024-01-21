@@ -1,0 +1,1 @@
+import * as coinsApi from './coins-api'
