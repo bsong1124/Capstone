@@ -28,7 +28,22 @@ const getPopularCoins = async (req,res) => {
     }
 }
 
+const getCoin = async (req,res) => {
+    const q = req.query.q
+    try{
+        const coinResponse = await fetch(`https://api.coingecko.com/api/v3/coins/${q}`, {
+            method: "GET",
+        })
+        const coinData = await coinResponse.json()
+        res.json(coinData)
+    }catch(error){
+        console.log(err)
+        res.json({message: 'error', error: res.statusText})
+    }
+}
+
 module.exports = {
   getAllCoins,
   getPopularCoins,
+  getCoin,
 };
