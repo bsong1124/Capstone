@@ -9,3 +9,13 @@ export async function findPopular() {
       throw err;
     }
   }
+
+  export async function findLayerOne() {
+    try {
+      const layerOne = await coinsApi.getLayerOneCoins();
+      return layerOne;
+    } catch (err) {
+      console.log(err.message);
+      throw err;
+    }
+  }
