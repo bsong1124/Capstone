@@ -1,10 +1,11 @@
 const express = require("express");
-const token = process.env.TRIPADVISOR_TOKEN;
-// const ROOT_URL = "https://api.coingecko.com/api/v3/coins/list";
+const token = process.env.TOKEN;
+const ROOT_URL = "https://pro-api.coingecko.com/api/v3";
+// const tokenPrefix = "?&x_cg_pro_api_key="
 
 const getAllCoins = async (req, res) => {
   try {
-    const allCoinsResponse = await fetch("https://api.coingecko.com/api/v3/coins/list", {
+    const allCoinsResponse = await fetch(`${ROOT_URL}/coins/list/${token}`, {
       method: "GET",
     });
     const allCoinsData = await allCoinsResponse.json();
@@ -17,7 +18,7 @@ const getAllCoins = async (req, res) => {
 
 const getPopularCoins = async (req,res) => {
     try {
-        const popularResponse = await fetch("https://api.coingecko.com/api/v3/search/trending", {
+        const popularResponse = await fetch(`${ROOT_URL}/search/trending/${token}`, {
             method: 'GET',
         })
         const popularData = await popularResponse.json()
@@ -31,7 +32,7 @@ const getPopularCoins = async (req,res) => {
 const getCoin = async (req,res) => {
     const q = req.query.q
     try{
-        const coinResponse = await fetch(`https://api.coingecko.com/api/v3/coins/${q}`, {
+        const coinResponse = await fetch(`${ROOT_URL}/coins/bitcoin/${token}`, {
             method: "GET",
         })
         const coinData = await coinResponse.json()
@@ -44,7 +45,7 @@ const getCoin = async (req,res) => {
 
 const getLayerOne = async (req,res) => {
   try {
-      const layerOneResponse = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=10&page=1&sparkline=false&locale=en", {
+      const layerOneResponse = await fetch(`${ROOT_URL}/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=10&page=1&sparkline=false/${token}`, {
           method: 'GET',
       })
       const layerOneData = await layerOneResponse.json()
