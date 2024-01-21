@@ -1,7 +1,7 @@
 const express = require("express");
 const token = process.env.TOKEN;
 const ROOT_URL = "https://pro-api.coingecko.com/api/v3";
-// const tokenPrefix = "?&x_cg_pro_api_key="
+const URL = "https://api.coingecko.com/api/v3"
 
 const getAllCoins = async (req, res) => {
   try {
@@ -30,17 +30,17 @@ const getPopularCoins = async (req,res) => {
 }
 
 const getCoin = async (req,res) => {
-    const q = req.query.q
-    try{
-        const coinResponse = await fetch(`${ROOT_URL}/coins/bitcoin/${token}`, {
-            method: "GET",
-        })
-        const coinData = await coinResponse.json()
-        res.json(coinData)
-    }catch(error){
-        console.log(err)
-        res.json({message: 'error', error: res.statusText})
-    }
+    // const q = req.query.q
+    // try{
+    //     const coinResponse = await fetch(`${ROOT_URL}/coins/bitcoin/${token}`, {
+    //         method: "GET",
+    //     })
+    //     const coinData = await coinResponse.json()
+    //     res.json(coinData)
+    // }catch(error){
+    //     console.log(err)
+    //     res.json({message: 'error', error: res.statusText})
+    // }
 }
 
 const getLayerOne = async (req,res) => {
@@ -56,9 +56,25 @@ const getLayerOne = async (req,res) => {
   }
 }
 
+const searchCoins = async (req,res) => {
+  const q = req.query.q
+  console.log({q})
+  try{
+      const searchResponse = await fetch(`${URL}/search?query=${q}`, {
+          method: "GET",
+      })
+      const searchData = await searchResponse.json()
+      res.json(searchData)
+  }catch(error){
+      console.log(err)
+      res.json({message: 'error', error: res.statusText})
+  }
+}
+
 module.exports = {
   getAllCoins,
   getPopularCoins,
   getCoin,
   getLayerOne,
+  searchCoins,
 };

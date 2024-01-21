@@ -6,6 +6,6 @@ const coinsCtrl = require("../controllers/coins");
 router.get("/", coinsCtrl.getAllCoins);
 router.get('/popular', coinsCtrl.getPopularCoins)
 router.get('/layer-1', coinsCtrl.getLayerOne)
-router.get('/search', coinsCtrl.getCoin)
+router.get('/search', coinsCtrl.searchCoins)
 
 module.exports = router;
