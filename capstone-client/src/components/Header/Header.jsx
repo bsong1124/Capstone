@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import LoginButton from "../Auth/LoginButton";
 import LogoutButton from "../Auth/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import './Header.css'
 
 const Header = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -16,6 +17,7 @@ const Header = () => {
         {!isLoading ? (
           isAuthenticated ? (
             <span>
+              <img className='user-img' src={user.picture}/>
               <Link to="/profile">Profile</Link> || <LogoutButton />
             </span>
           ) : (
