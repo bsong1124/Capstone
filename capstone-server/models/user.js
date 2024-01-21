@@ -13,6 +13,8 @@ const UserSchema = new Schema({
 const CoinsSchema = new Schema({
     coinName: String,
     coinTicker: String,
+    description: String,
+    image: String,
   });
 
 module.exports = {
