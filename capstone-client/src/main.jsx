@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client"
 import { BrowserRouter as Router } from "react-router-dom";
-import  App  from "./App";
+import  App  from "./App.jsx";
 import Auth0ProviderWithNavigate from "./components/Auth/AuthProvider.jsx";
 import "./index.css";
 
