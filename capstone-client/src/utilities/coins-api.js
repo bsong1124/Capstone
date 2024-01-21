@@ -25,9 +25,25 @@ export async function getLayerOneCoins() {
   });
   if (layerResponse.ok) {
     const layerData = await layerResponse.json();
-    console.log({ layerData });
+    // console.log({ layerData });
     return layerData;
   } else {
     console.log(err.message);
   }
 }
+
+export async function getSearchCoins(q) {
+    const searchResponse = await fetch(`${config.BASE_URL}/search?q=${q}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (searchResponse.ok) {
+      const searchData = await searchResponse.json();
+      console.log({ searchData });
+      return searchData;
+    } else {
+      console.log(err.message);
+    }
+  }
