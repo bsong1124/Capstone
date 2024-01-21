@@ -1,4 +1,5 @@
 const express = require("express");
+const { User } = require("../models/user");
 const token = process.env.TOKEN;
 const ROOT_URL = "https://pro-api.coingecko.com/api/v3";
 const URL = "https://api.coingecko.com/api/v3"
@@ -72,10 +73,28 @@ const searchCoins = async (req,res) => {
   }
 }
 
+const createProfile = async (req, res) => {
+  console.log('REQ.BODY', req.body)
+  console.log('working')
+  try{
+    const profile = await User.findOne({ googleId: req.body.googleId })
+    if(profile){
+      console.log({profile})
+    }else{
+      const newProfile = await User.create(req.body)
+      res.json(newProfile)
+    }
+  }catch(err){
+    console.log(err)
+    res.json({message: 'error', error: res.statusText})
+  }
+}
+
 module.exports = {
   getAllCoins,
   getPopularCoins,
   getCoin,
   getLayerOne,
   searchCoins,
+  createProfile,
 };
