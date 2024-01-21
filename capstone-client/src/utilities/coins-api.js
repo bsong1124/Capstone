@@ -9,7 +9,7 @@ export async function getPopularCoins() {
   });
   if (popularResponse.ok) {
     const popularData = await popularResponse.json();
-    console.log(popularData.coins);
+    // console.log(popularData.coins);
     return popularData.coins;
   } else {
     console.log(err.message);
@@ -41,11 +41,10 @@ export async function getSearchCoins(q) {
     });
     if (searchResponse.ok) {
       const searchData = await searchResponse.json();
-      console.log({ searchData });
+    //   console.log({ searchData });
       return searchData.coins;
     } else {
       console.log(err.message);
     }
   }
 
-  

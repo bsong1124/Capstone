@@ -17,7 +17,7 @@ const Home = () => {
     }
   };
 
-  console.log({ popularCoins });
+  // console.log({ popularCoins });
 
   useEffect(() => {
     getPopularCoins();
