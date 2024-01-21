@@ -31,10 +31,10 @@ export async function searchCoin(q) {
   }
 }
 
-export async function getMyPortfolio(id) {
-    console.log({id})
+export async function createMyProfile(data) {
+    console.log({data})
     try{
-        const portfolio = coinsApi.getPortfolio(id)
+        const portfolio = coinsApi.createProfile(data)
         return portfolio
     }catch(err) {
         console.log(err.message)

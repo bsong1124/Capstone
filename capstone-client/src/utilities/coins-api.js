@@ -48,17 +48,18 @@ export async function getSearchCoins(q) {
   }
 }
 
-export async function getPortfolio(id) {
-  const portfolioResponse = await fetch("", {
-    method: "GET",
+export async function createProfile(data) {
+  const profileResponse = await fetch(`${config.BASE_URL}/profile`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(data)
   });
 
-  if(portfolioResponse.ok){
-    const portfolioData = await portfolioResponse.json()
-    return portfolioData
+  if(profileResponse.ok){
+    const profileData = await profileResponse.json()
+    return profileData
   }else{
     console.log(err.message)
   }
