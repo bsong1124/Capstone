@@ -64,6 +64,7 @@ const searchCoins = async (req,res) => {
           method: "GET",
       })
       const searchData = await searchResponse.json()
+      console.log(searchData)
       res.json(searchData)
   }catch(error){
       console.log(err)

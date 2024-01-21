@@ -6,7 +6,8 @@ const UserSchema = new Schema({
     email: String,
     portfolio: [{
         coinName:String,
-        coinTicker: String
+        coinTicker: String,
+        image: String
     }]
 })
 
