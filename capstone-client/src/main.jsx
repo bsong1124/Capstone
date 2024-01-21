@@ -9,8 +9,8 @@ const root = createRoot(container);
 
 root.render(
   <Router>
-    <Auth0ProviderWithNavigate>
+    {/* <Auth0ProviderWithNavigate> */}
       <App />
-    </Auth0ProviderWithNavigate>
+    {/* </Auth0ProviderWithNavigate> */}
   </Router>
 );
