@@ -33,7 +33,7 @@ const Home = () => {
     <div>
     {popularCoins && popularCoins.map((p, idx) => (
       <div key={idx}>
-        <p>Name: {p.item.name} <img src={p.item.thumb}></img></p>
+        <p>Name: {p.item.name} <img src={p.item.thumb} className='coin-img'></img></p>
         <p>Ticker: {p.item.symbol}</p>
         <p>Price: {p.item.data.price}</p>
         <p>Market Cap: {p.item.data.market_cap}</p>

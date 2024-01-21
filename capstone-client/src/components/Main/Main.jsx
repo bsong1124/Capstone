@@ -5,6 +5,8 @@ import Profile from "../../pages/Profile/Profile";
 import Coins from "../../pages/Coins/Coins";
 import About from "../../pages/About";
 
+import './Main.css'
+
 const Main = () => {
   return (
     <div>

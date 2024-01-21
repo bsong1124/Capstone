@@ -35,9 +35,13 @@ const Coins = () => {
   const renderLayerOne = () => (
     <div>
       <h1>Coins page</h1>
-      {layerOne && layerOne.map((l) => (
+      {layerOne && layerOne.map((l, idx) => (
         <div key={idx}>
-
+            <p>Name: {l.name} <img src={l.image} className='coin-img'/></p>
+            <p>Ticker: {l.symbol}</p>
+            <p>Price: ${l.current_price}</p>
+            <p>Market Cap: ${l.market_cap}</p>
+            <p>Volume: ${l.total_volume}</p>
         </div>
       ))}
     </div>
