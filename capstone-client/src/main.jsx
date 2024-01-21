@@ -1,12 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import { createRoot } from "react-dom/client"
+import { BrowserRouter as Router } from "react-router-dom";
+import  App  from "./App";
+import Auth0ProviderWithNavigate from "./components/Auth/AuthProvider.jsx";
+import "./index.css";
 
-import {BrowserRouter as Router} from 'react-router-dom'
+const container = document.getElementById("root");
+const root = createRoot(container);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+root.render(
   <Router>
-    <App />
-  </Router>,
-)
+    <Auth0ProviderWithNavigate>
+      <App />
+    </Auth0ProviderWithNavigate>
+  </Router>
+);

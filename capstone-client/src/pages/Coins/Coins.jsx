@@ -6,8 +6,8 @@ import { findLayerOne, searchCoin } from "../../utilities/coins-service";
 const Coins = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [layerOne, setLayerOne] = useState([]);
-  const [searchCoin, setSearchCoin] = useState("");
-  const [searchedCoin, setSearchedCoin] = useState(null);
+  const [coinSearch, setCoinSearch] = useState("");
+  const [searchedCoin, setSearchedCoin] = useState([]);
 
   const renderLoading = () => (
     <section>
@@ -25,22 +25,25 @@ const Coins = () => {
     }
   };
 
+
   const handleChange = (e) => {
     // console.log('e', e.target.value)
-    setSearchCoin(e.target.value);
+    setCoinSearch(e.target.value);
   };
 
-  console.log(searchCoin);
+//   console.log({ coinSearch });
 
-  const getCoin = async () => {
+  const getCoin = async (e) => {
+    e.preventDefault()
     try {
-      const searchResponse = await searchCoin(searchCoin);
+    //   console.log("working");
+      const searchResponse = await searchCoin(coinSearch);
       setSearchedCoin(searchResponse);
     } catch (err) {
       console.log("error");
     }
   };
-//   console.log({ searchedCoin });
+    // console.log({ searchedCoin });
 
   async function handleRequest() {
     getLayerOneCoins();
@@ -55,13 +58,13 @@ const Coins = () => {
       <form onSubmit={getCoin}>
         <input
           type="text"
-          value={searchCoin}
+          value={coinSearch}
           onChange={handleChange}
           placeholder="Search for a coin"
         />
         <button type="submit">Search</button>
       </form>
-      {layerOne &&
+      {layerOne && searchedCoin.length === 0 &&
         layerOne.map((l, idx) => (
           <div key={idx}>
             <p>
@@ -72,6 +75,14 @@ const Coins = () => {
             <p>Market Cap: ${l.market_cap}</p>
             <p>Volume: ${l.total_volume}</p>
           </div>
+        ))}
+        {searchedCoin && searchedCoin.map((c, idx) => (
+            <div key={idx}>
+                <p>{c.name} <img src={c.thumb}></img></p>
+                <p>{c.symbol}</p>
+                <p>{c.name}</p>
+                <p>{c.name}</p>
+            </div>
         ))}
     </div>
   );

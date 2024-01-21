@@ -42,8 +42,10 @@ export async function getSearchCoins(q) {
     if (searchResponse.ok) {
       const searchData = await searchResponse.json();
       console.log({ searchData });
-      return searchData;
+      return searchData.coins;
     } else {
       console.log(err.message);
     }
   }
+
+  
