@@ -1,0 +1,16 @@
+.coin-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width:100%;
+  }
+.coin-card a {
+    text-decoration: none;
+    color: inherit;
+}
+.coin-card a p img {
+    vertical-align: middle;
+    max-width: 24px;
+  }

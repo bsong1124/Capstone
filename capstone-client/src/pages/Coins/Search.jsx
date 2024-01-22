@@ -1,9 +1,12 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { findLayerOne, searchCoin } from "../../utilities/coins-service";
 
-const Coins = () => {
+import "./coins.css";
+
+const SearchCoins = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [layerOne, setLayerOne] = useState([]);
   const [coinSearch, setCoinSearch] = useState("");
@@ -66,14 +69,16 @@ const Coins = () => {
       {layerOne &&
         searchedCoin.length === 0 &&
         layerOne.map((l, idx) => (
-          <div key={idx}>
-            <p>
-              Name: {l.name} <img src={l.image} className="coin-img" />
-            </p>
-            <p>Ticker: {l.symbol}</p>
-            <p>Price: ${l.current_price}</p>
-            <p>Market Cap: ${l.market_cap}</p>
-            <p>Volume: ${l.total_volume}</p>
+          <div key={idx} className="coin-card">
+            <Link to="/coins/show" key={idx}>
+              <p>
+                Name: {l.name} <img src={l.image} />
+              </p>
+              <p>Ticker: {l.symbol}</p>
+              <p>Price: ${l.current_price}</p>
+              <p>Market Cap: ${l.market_cap}</p>
+              <p>Volume: ${l.total_volume}</p>
+            </Link>
           </div>
         ))}
       {searchedCoin &&
@@ -90,4 +95,4 @@ const Coins = () => {
   return isLoading ? renderLoading() : renderLayerOne();
 };
 
-export default Coins;
+export default SearchCoins;
