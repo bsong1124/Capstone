@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { findLayerOne, searchCoin } from "../../utilities/coins-service";
 
+import "./search.css";
+
 const SearchCoins = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [layerOne, setLayerOne] = useState([]);
@@ -56,15 +58,16 @@ const SearchCoins = () => {
   const renderLayerOne = () => (
     <div>
       <div className="form-container">
-        <form onSubmit={getCoin}>
+        <form className="form" onSubmit={getCoin}>
           <input
-            className="input-bar"
+            required
+            className="search-bar"
             type="text"
             value={coinSearch}
             onChange={handleChange}
             placeholder="Search for a coin"
           />
-          <button type="submit">Search</button>
+          <i className="fa fa-search"></i>
         </form>
       </div>
       {searchedCoin.length === 0 && (

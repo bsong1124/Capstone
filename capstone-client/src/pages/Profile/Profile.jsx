@@ -102,16 +102,18 @@ const Profile = () => {
         <p>{profile.email}</p>
         <form onSubmit={editProfile}>
           <input
+          className='user-input'
             value={editName}
             onChange={handleName}
             placeholder="Edit Name"
           />
           <input
+          className='user-input'
             value={editEmail}
             onChange={handleEmail}
             placeholder="Edit Email"
           />
-          <button type="submit">Edit</button>
+          <button className='btn' type="submit">Edit</button>
         </form>
       </div>
     );
