@@ -70,10 +70,11 @@ const SearchCoins = () => {
         searchedCoin.length === 0 &&
         layerOne.map((l, idx) => (
           <div key={idx} className="coin-card">
-            <Link to="/coins/show" key={idx}>
+            <Link to={`/coins/${l.id}`} key={idx}>
               <p>
                 Name: {l.name} <img src={l.image} />
               </p>
+              <p>Id: {l.id}</p>
               <p>Ticker: {l.symbol}</p>
               <p>Price: ${l.current_price}</p>
               <p>Market Cap: ${l.market_cap}</p>

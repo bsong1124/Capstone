@@ -47,3 +47,21 @@ export async function getSearchCoins(q) {
     console.log(err.message);
   }
 }
+
+export async function getDetails(q) {
+  console.log("WORKING -API");
+  console.log({ q });
+  const detailResponse = await fetch(`${config.BASE_URL}/show?q=${q}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (detailResponse.ok) {
+    const detailData = await detailResponse.json();
+    console.log({ detailData });
+    return detailData;
+  } else {
+    console.log(err.message);
+  }
+}

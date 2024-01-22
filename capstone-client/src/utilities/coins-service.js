@@ -30,3 +30,15 @@ export async function searchCoin(q) {
     throw err;
   }
 }
+
+export async function getCoinDetails(q) {
+  console.log("WORKING SERVICE");
+  console.log({ q });
+  try {
+    const search = await coinsApi.getDetails(q);
+    return search;
+  } catch (err) {
+    console.log(err.message);
+    throw err;
+  }
+}
