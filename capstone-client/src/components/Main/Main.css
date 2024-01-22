@@ -47,24 +47,26 @@
     display: grid;
     grid-template-columns: 1fr 1fr ;
     /* grid-gap: 40px 0px; */
-text-align: center;}
+    text-align: center;
+}
 
 .form-container{
     text-align: center;
 }
-.input-bar{
+
+.user-input{
     width: 250px;
     height: 25px;
-    border-color: lavender;;
+    border-color: lavender;
 }
 .coin-container{
     display: flex;
     flex-direction: row;
 }
 .details-container{
-    border-top: 2px lightgray solid;
-    border-right: 2px lightgray solid;
-    border-bottom: 2px lightgray solid;
+    border-top: 2px lavender;
+    border-right: 2px lavender;
+    border-bottom: 2px lavender;
     max-width: 500px;
     display: flex;
     flex-direction: column;
@@ -77,5 +79,14 @@ text-align: center;}
     width: 1800px;
     /* background-color:  #27293D; */
     background-color:  #1E1E2F;
+    
 }
+::placeholder {
+    color: #999; 
+    font-style: italic; 
+}
+.btn{
+
+}
+
 .link-card{}

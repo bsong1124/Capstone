@@ -89,6 +89,9 @@ const Coins = () => {
             enabled: true,
             mode: "xy",
           },
+          limits: {
+            x: 1,
+          },
           zoom: {
             wheel: {
               enabled: true,
@@ -108,6 +111,9 @@ const Coins = () => {
       scales: {
         x: {
           beginAtZero: true,
+          ticks: {
+            maxTicksLimit: 6,
+          },
         },
       },
     };
