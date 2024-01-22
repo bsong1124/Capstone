@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { findLayerOne, searchCoin } from "../../utilities/coins-service";
 
-import "./coins.css";
-
 const SearchCoins = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [layerOne, setLayerOne] = useState([]);
@@ -57,42 +55,65 @@ const SearchCoins = () => {
 
   const renderLayerOne = () => (
     <div>
-      <form onSubmit={getCoin}>
-        <input
-          type="text"
-          value={coinSearch}
-          onChange={handleChange}
-          placeholder="Search for a coin"
-        />
-        <button type="submit">Search</button>
-      </form>
-      {layerOne &&
-        searchedCoin.length === 0 &&
-        layerOne.map((l, idx) => (
-          <div key={idx} className="coin-card">
-            <Link to={`/coins/${l.id}`} key={idx}>
-              <p>
-                Name: {l.name} <img className="coin-img" src={l.image} />
-              </p>
-              <p>Id: {l.id}</p>
-              <p>Ticker: {l.symbol}</p>
-              <p>Price: ${l.current_price}</p>
-              <p>Market Cap: ${l.market_cap}</p>
-              <p>Volume: ${l.total_volume}</p>
-            </Link>
+      <div className="form-container">
+        <form onSubmit={getCoin}>
+          <input
+            className="input-bar"
+            type="text"
+            value={coinSearch}
+            onChange={handleChange}
+            placeholder="Search for a coin"
+          />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      {searchedCoin.length === 0 && (
+        <div className="home-header-container">
+          <p>Name</p>
+          <p>Ticker</p>
+          <p>Price</p>
+          <p>Market Cap</p>
+          <p>Total Volume</p>
+        </div>
+      )}
+      <div className="coin-container">
+        {layerOne &&
+          searchedCoin.length === 0 &&
+          layerOne.map((l, idx) => (
+            <div key={idx} className="coin-card">
+              <Link className="card-elements" to={`/coins/${l.id}`} key={idx}>
+                <p>
+                  Name: {l.name} <img className="coin-img" src={l.image} />
+                </p>
+                <p>{l.symbol}</p>
+                <p>${l.current_price}</p>
+                <p>${l.market_cap}</p>
+                <p>${l.total_volume}</p>
+              </Link>
+            </div>
+          ))}
+        {searchedCoin && (
+          <div className="home-header-container">
+            <p>Name</p>
+            <p>Ticker</p>
           </div>
-        ))}
-      {searchedCoin &&
-        searchedCoin.map((c, idx) => (
-          <div key={idx} className="coin-card">
-            <Link to={`/coins/${c.id}`} key={idx}>
-              <p>
-                Name: {c.name} <img src={c.thumb}></img>
-              </p>
-              <p>Ticker: {c.symbol}</p>
-            </Link>
-          </div>
-        ))}
+        )}
+        {searchedCoin &&
+          searchedCoin.map((c, idx) => (
+            <div key={idx} className="coin-card">
+              <Link
+                className="search-card-elements"
+                to={`/coins/${c.id}`}
+                key={idx}
+              >
+                <p>
+                  Name: {c.name} <img src={c.thumb}></img>
+                </p>
+                <p>Ticker: {c.symbol}</p>
+              </Link>
+            </div>
+          ))}
+      </div>
     </div>
   );
   return isLoading ? renderLoading() : renderLayerOne();

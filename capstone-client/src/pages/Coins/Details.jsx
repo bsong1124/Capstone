@@ -5,9 +5,6 @@ import { getCoinDetails } from "../../utilities/coins-service";
 
 import { Chart as ChartJS } from "chart.js/auto";
 import { Line, Bar, Doughnut } from "react-chartjs-2";
-// import { Utils } from "chartjs-adapter-date-fns";
-
-import "./coins.css";
 
 const Coins = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -66,21 +63,21 @@ const Coins = () => {
     };
 
     const formatUnix = (unixMilliseconds) => {
-        // Create a new Date object using the Unix timestamp in milliseconds
-        const date = new Date(unixMilliseconds);
-      
-        // Get the month, day, hour, and minute from the date
-        const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Add 1 to month because it is zero-based
-        const day = date.getDate().toString().padStart(2, "0");
-        const hour = date.getHours().toString().padStart(2, "0");
-        const minute = date.getMinutes().toString().padStart(2, "0");
-      
-        // Format the date to "mm/dd"
-        const formattedDate = `${month}/${day}`;
-        const formattedTime = `${hour}:${minute}`;
-      
-        return { formattedDate, formattedTime };
-      };
+      // Create a new Date object using the Unix timestamp in milliseconds
+      const date = new Date(unixMilliseconds);
+
+      // Get the month, day, hour, and minute from the date
+      const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Add 1 to month because it is zero-based
+      const day = date.getDate().toString().padStart(2, "0");
+      const hour = date.getHours().toString().padStart(2, "0");
+      const minute = date.getMinutes().toString().padStart(2, "0");
+
+      // Format the date to "mm/dd"
+      const formattedDate = `${month}/${day}`;
+      const formattedTime = `${hour}:${minute}`;
+
+      return { formattedDate, formattedTime };
+    };
 
     const skipped = (ctx, value) =>
       ctx.p0.skip || ctx.p1.skip ? value : undefined;
@@ -130,7 +127,7 @@ const Coins = () => {
     };
 
     const ChartComponent = () => (
-      <div className="bar">
+      <div className="line">
         <Line data={data.data} options={data.options} />
       </div>
     );

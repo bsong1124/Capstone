@@ -18,8 +18,6 @@ const Home = () => {
     }
   };
 
-  // console.log({ popularCoins });
-
   useEffect(() => {
     getPopularCoins();
   }, []);
@@ -32,24 +30,36 @@ const Home = () => {
 
   const renderPopular = () => (
     <div>
-      {popularCoins &&
-        popularCoins.map((p, idx) => (
-          <div className="coin-card" key={idx}>
-            <Link to={`/coins/${p.item.id}`} key={idx}>
-              <p>
-                Name: {p.item.name}{" "}
-                <img src={p.item.thumb} className="coin-img"></img>
-              </p>
-              <p>Ticker: {p.item.symbol}</p>
-              <p>Price: {p.item.data.price}</p>
-              <p>Market Cap: {p.item.data.market_cap}</p>
-              <p>Total Volume: {p.item.data.total_volume}</p>
-            </Link>
-          </div>
-        ))}
+      <div className="home-header-container">
+        <p>Name</p>
+        <p>Ticker</p>
+        <p>Price</p>
+        <p>Market Cap</p>
+        <p>Total Volume</p>
+      </div>
+      <div className="coin-container">
+        {popularCoins &&
+          popularCoins.map((p, idx) => (
+            <div className="coin-card" key={idx}>
+              <Link
+                className="card-elements"
+                to={`/coins/${p.item.id}`}
+                key={idx}
+              >
+                <p>
+                  {p.item.name}{" "}
+                  <img src={p.item.thumb} className="coin-img"></img>
+                </p>
+                <p>{p.item.symbol}</p>
+                <p>{p.item.data.price}</p>
+                <p>{p.item.data.market_cap}</p>
+                <p>{p.item.data.total_volume}</p>
+              </Link>
+            </div>
+          ))}
+      </div>
     </div>
   );
-
   return isLoading ? renderLoading() : renderPopular();
 };
 
