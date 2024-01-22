@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { findPopular } from "../utilities/coins-service";
 
 const Home = () => {
@@ -11,13 +12,11 @@ const Home = () => {
     try {
       const popularResponse = await findPopular();
       setPopularCoins(popularResponse);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (err) {
       console.log("error");
     }
   };
-
-  // console.log({ popularCoins });
 
   useEffect(() => {
     getPopularCoins();
@@ -31,20 +30,37 @@ const Home = () => {
 
   const renderPopular = () => (
     <div>
-    {popularCoins && popularCoins.map((p, idx) => (
-      <div key={idx}>
-        <p>Name: {p.item.name} <img src={p.item.thumb} className='coin-img'></img></p>
-        <p>Ticker: {p.item.symbol}</p>
-        <p>Price: {p.item.data.price}</p>
-        <p>Market Cap: {p.item.data.market_cap}</p>
-        <p>Total Volume: {p.item.data.total_volume}</p>
+      <div className="home-header-container">
+        <p>Name</p>
+        <p>Ticker</p>
+        <p>Price</p>
+        <p>Market Cap</p>
+        <p>Total Volume</p>
       </div>
-    ))}
-  </div>
-  )
-
-  return (isLoading ? renderLoading() : renderPopular());
+      <div className="coin-container">
+        {popularCoins &&
+          popularCoins.map((p, idx) => (
+            <div className="coin-card" key={idx}>
+              <Link
+                className="card-elements"
+                to={`/coins/${p.item.id}`}
+                key={idx}
+              >
+                <p>
+                  {p.item.name}{" "}
+                  <img src={p.item.thumb} className="coin-img"></img>
+                </p>
+                <p>{p.item.symbol}</p>
+                <p>{p.item.data.price}</p>
+                <p>{p.item.data.market_cap}</p>
+                <p>{p.item.data.total_volume}</p>
+              </Link>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+  return isLoading ? renderLoading() : renderPopular();
 };
 
 export default Home;
-

@@ -48,18 +48,20 @@ export async function getSearchCoins(q) {
   }
 }
 
-export async function getPortfolio(id) {
-  const portfolioResponse = await fetch("", {
+export async function getDetails(q) {
+  //   console.log("WORKING -API");
+  //   console.log({ q });
+  const detailResponse = await fetch(`${config.BASE_URL}/show?q=${q}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-  if(portfolioResponse.ok){
-    const portfolioData = await portfolioResponse.json()
-    return portfolioData
-  }else{
-    console.log(err.message)
+  if (detailResponse.ok) {
+    const detailData = await detailResponse.json();
+    // console.log({ detailData });
+    return detailData;
+  } else {
+    console.log(err.message);
   }
 }

@@ -1,3 +1,25 @@
-.user-img {
-    max-width: 25px;
-}
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; 
+    background-color: #f2f2f2; 
+    font-size: 20px;
+  }
+  
+  .nav-links a {
+    margin-right: 10px; 
+  }
+  
+  .user-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-actions span {
+    display: flex;
+    align-items: center;
+  }
+  .user-img{
+    border-radius: 24px;
+  }

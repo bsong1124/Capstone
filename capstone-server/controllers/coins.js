@@ -1,7 +1,8 @@
 const express = require("express");
+const { User } = require("../models/user");
 const token = process.env.TOKEN;
 const ROOT_URL = "https://pro-api.coingecko.com/api/v3";
-const URL = "https://api.coingecko.com/api/v3"
+const URL = "https://api.coingecko.com/api/v3";
 
 const getAllCoins = async (req, res) => {
   try {
@@ -16,66 +17,83 @@ const getAllCoins = async (req, res) => {
   }
 };
 
-const getPopularCoins = async (req,res) => {
-    try {
-        const popularResponse = await fetch(`${ROOT_URL}/search/trending/${token}`, {
-            method: 'GET',
-        })
-        const popularData = await popularResponse.json()
-        res.json(popularData)
-    }catch(err){
-        console.log(err.message)
-        res.json({message: 'error', error: res.statusText})
-    }
-}
-
-const getCoin = async (req,res) => {
-    // const q = req.query.q
-    // try{
-    //     const coinResponse = await fetch(`${ROOT_URL}/coins/bitcoin/${token}`, {
-    //         method: "GET",
-    //     })
-    //     const coinData = await coinResponse.json()
-    //     res.json(coinData)
-    // }catch(error){
-    //     console.log(err)
-    //     res.json({message: 'error', error: res.statusText})
-    // }
-}
-
-const getLayerOne = async (req,res) => {
+const getPopularCoins = async (req, res) => {
   try {
-      const layerOneResponse = await fetch(`${ROOT_URL}/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=10&page=1&sparkline=false/${token}`, {
-          method: 'GET',
-      })
-      const layerOneData = await layerOneResponse.json()
-      res.json(layerOneData)
-  }catch(err){
-      console.log(err.message)
-      res.json({message: 'error', error: res.statusText})
+    const popularResponse = await fetch(
+      `${ROOT_URL}/search/trending/${token}`,
+      {
+        method: "GET",
+      }
+    );
+    const popularData = await popularResponse.json();
+    res.json(popularData);
+  } catch (err) {
+    console.log(err.message);
+    res.json({ message: "error", error: res.statusText });
   }
-}
+};
 
-const searchCoins = async (req,res) => {
-  const q = req.query.q
-  console.log({q})
-  try{
-      const searchResponse = await fetch(`${URL}/search?query=${q}`, {
-          method: "GET",
-      })
-      const searchData = await searchResponse.json()
-      console.log(searchData)
-      res.json(searchData)
-  }catch(error){
-      console.log(err)
-      res.json({message: 'error', error: res.statusText})
+const getLayerOne = async (req, res) => {
+  try {
+    const layerOneResponse = await fetch(
+      `${ROOT_URL}/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=15&page=1&sparkline=false/${token}`,
+      {
+        method: "GET",
+      }
+    );
+    const layerOneData = await layerOneResponse.json();
+    res.json(layerOneData);
+  } catch (err) {
+    console.log(err.message);
+    res.json({ message: "error", error: res.statusText });
   }
-}
+};
+
+const searchCoins = async (req, res) => {
+  const q = req.query.q;
+  console.log({ q });
+  try {
+    const searchResponse = await fetch(`${URL}/search?query=${q}`, {
+      method: "GET",
+    });
+    const searchData = await searchResponse.json();
+    console.log(searchData);
+    res.json(searchData);
+  } catch (error) {
+    console.log(err);
+    res.json({ message: "error", error: res.statusText });
+  }
+};
+
+const getCoinDetails = async (req, res) => {
+  const q = req.query.q;
+  try {
+    const coinResponse = await fetch(`${ROOT_URL}/coins/${q}/${token}`, {
+      method: "GET",
+    });
+    const coinData = await coinResponse.json();
+
+    const rangeResponse = await fetch(
+      `${ROOT_URL}/coins/${q}/market_chart/range?vs_currency=usd&from=1704085200&to=1705726800${token}&precision=2`,
+      {
+        method: "GET",
+      }
+    );
+    const rangeData = await rangeResponse.json();
+    const priceRangeData = rangeData.prices.slice(0, 30);
+
+    console.log("PRICES", priceRangeData);
+    res.json({ coinData, priceRangeData });
+  } catch (error) {
+    console.log(err);
+    res.json({ message: "error", error: res.statusText });
+  }
+};
 
 module.exports = {
   getAllCoins,
   getPopularCoins,
-  getCoin,
+  getCoinDetails,
   getLayerOne,
   searchCoins,
 };
