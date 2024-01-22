@@ -49,8 +49,8 @@ export async function getSearchCoins(q) {
 }
 
 export async function getDetails(q) {
-//   console.log("WORKING -API");
-//   console.log({ q });
+  //   console.log("WORKING -API");
+  //   console.log({ q });
   const detailResponse = await fetch(`${config.BASE_URL}/show?q=${q}`, {
     method: "GET",
     headers: {
