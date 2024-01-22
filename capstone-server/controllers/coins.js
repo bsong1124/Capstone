@@ -59,8 +59,8 @@ const searchCoins = async (req, res) => {
     const searchData = await searchResponse.json();
     console.log(searchData);
     res.json(searchData);
-  } catch (error) {
-    console.log(err);
+  } catch (err) {
+    console.log(err.message);
     res.json({ message: "error", error: res.statusText });
   }
 };
@@ -84,7 +84,7 @@ const getCoinDetails = async (req, res) => {
 
     console.log("PRICES", priceRangeData);
     res.json({ coinData, priceRangeData });
-  } catch (error) {
+  } catch (err) {
     console.log(err);
     res.json({ message: "error", error: res.statusText });
   }

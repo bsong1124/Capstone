@@ -20,10 +20,8 @@ const Coins = () => {
   );
 
   const getDetails = async (e) => {
-    // const
     try {
       const detailResponse = await getCoinDetails(id);
-      //   console.log("PRICE RANGE", detailResponse.priceRangeData);
       setCoinDetails(detailResponse.coinData);
       setPriceRangeData(detailResponse.priceRangeData);
       setIsLoading(false);
@@ -31,8 +29,6 @@ const Coins = () => {
       console.log(err.message);
     }
   };
-
-  console.log({ priceRangeData });
 
   const renderDetails = () => {
     const c = { ...coinDetails };
@@ -63,16 +59,13 @@ const Coins = () => {
     };
 
     const formatUnix = (unixMilliseconds) => {
-      // Create a new Date object using the Unix timestamp in milliseconds
       const date = new Date(unixMilliseconds);
 
-      // Get the month, day, hour, and minute from the date
-      const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Add 1 to month because it is zero-based
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const day = date.getDate().toString().padStart(2, "0");
       const hour = date.getHours().toString().padStart(2, "0");
       const minute = date.getMinutes().toString().padStart(2, "0");
 
-      // Format the date to "mm/dd"
       const formattedDate = `${month}/${day}`;
       const formattedTime = `${hour}:${minute}`;
 
@@ -133,16 +126,23 @@ const Coins = () => {
     );
 
     return (
-      <div>
-        <div>
+      <div className="details-container">
+        <div className="coin-data">
           {coinDetails && (
             <div>
               <p>
-                Name: {c.name} <img className="coin-img" src={c.image.thumb} />
+                <img className="coin-img" src={c.image.thumb} />
+                {c.name} <span>{c.symbol}</span>
               </p>
-              <p>Id: {c.id}</p>
-              <p>Ticker: {c.symbol}</p>
-              <p>Description: {c.description.en || "N/A"}</p>
+              <p id="current-price">
+                ${c.market_data.current_price.usd.toFixed(2)}{" "}
+                <span className="one-day-change">
+                  {c.market_data.price_change_percentage_24h.toFixed(2)}%(1d)
+                </span>
+              </p>
+              {/* <p>Id: {c.id}</p> */}
+              {/* <p>Ticker: {c.symbol}</p> */}
+              {/* <p>Description: {c.description.en || "N/A"}</p> */}
               {c?.links && (
                 <div>
                   <p>
@@ -173,18 +173,30 @@ const Coins = () => {
                 </div>
               )}
               <p>
-                Current price: ${c.market_data.current_price.usd}{" "}
-                <span className="one-day-change">
-                  {c.market_data.price_change_percentage_24h}
-                </span>
+                Market cap:{" "}
+                {c.market_data.market_cap.usd
+                  .toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                    minimumFractionDigits: 0,
+                  })
+                  }
               </p>
-              <p>Market cap: ${c.market_data.market_cap.usd}</p>
-              <p>Total volume: ${c.market_data.total_volume.usd}</p>
               <p>
-                Price change(7d): {c.market_data.price_change_percentage_7d} %
+                Total volume:{" "}
+                {c.market_data.total_volume.usd.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                })}
               </p>
               <p>
-                Price change(14d): {c.market_data.price_change_percentage_14d} %
+                Price change(7d):{" "}
+                {c.market_data.price_change_percentage_7d.toFixed(2)} %
+              </p>
+              <p>
+                Price change(14d):{" "}
+                {c.market_data.price_change_percentage_14d.toFixed(2)} %
               </p>
               <p>Total supply: {c.market_data.total_supply}</p>
               <p>Circulating supply: {c.market_data.circulating_supply}</p>
@@ -193,7 +205,12 @@ const Coins = () => {
                 {c.market_data.max_supply ? c.market_data.max_supply : "N/A"}
               </p>
               <p>
-                All-time high: ${c.market_data.ath.usd}{" "}
+                All-time high: $
+                {c.market_data.ath.usd.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                })}{" "}
                 <span>
                   {formatDate(c.market_data.ath_date.usd)} (
                   {getTimeDifference(c.market_data.ath_date.usd)} years ago){" "}
