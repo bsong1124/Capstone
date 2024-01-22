@@ -13,3 +13,11 @@
 .one-day-change {
   color: red;
 }
+.bar{
+  display: flex;
+  flex-direction: row;
+  max-width: 1800px;
+}
+.line{
+}
+.doughnut{}
