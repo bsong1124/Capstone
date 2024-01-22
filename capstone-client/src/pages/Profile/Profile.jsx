@@ -14,31 +14,20 @@ const Profile = () => {
     try {
       const create = await createMyProfile({
         googleId: authId,
+        name: user.given_name + user.family_name,
         email: user.email,
         portfolio: [],
       });
-      //   console.log("WORKING");
-      //   console.log("working");
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  const getProfile = async () => {
-    const authId = user.sub.substring(user.sub.indexOf("|") + 1);
-    try {
       const userProfile = await getMyProfile(authId);
       setProfile(userProfile);
     } catch (err) {
       console.log(err.message);
     }
   };
-  console.log({ profile });
 
   useEffect(() => {
     createProfile();
-    getProfile();
-  }, [isAuthenticated, user, setProfile]);
+  }, []);
 
   if (!isAuthenticated) {
     return <Navigate to="/" />;
@@ -49,13 +38,18 @@ const Profile = () => {
   }
 
   return (
-    isAuthenticated &&
-    profile &&
+    isAuthenticated && profile && (
       <div>
         <img src={user.picture} />
         <h2>{user.name}</h2>
         <p>{profile.email}</p>
+        <form>
+          <input placeholder="Edit Name" />
+          <input placeholder="Edit Email" />
+          <button></button>
+        </form>
       </div>
+    )
   );
 };
 
