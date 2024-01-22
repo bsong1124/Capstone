@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import { getCoinDetails } from "../../utilities/coins-service";
 
 import { Chart as ChartJS } from "chart.js/auto";
-import { Line, Bar, Doughnut } from "react-chartjs-2";
+import { Chart, Line } from "react-chartjs-2";
+import zoomPlugin from "chartjs-plugin-zoom";
+// import Hammer from "hammerjs";
+
+ChartJS.register(zoomPlugin);
 
 const Coins = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -79,10 +83,33 @@ const Coins = () => {
 
     const genericOptions = {
       fill: false,
+      plugins: {
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: "xy",
+          },
+          zoom: {
+            wheel: {
+              enabled: true,
+              speed: 0.3,
+            },
+            pinch: {
+              enabled: true,
+            },
+            mode: "x",
+          },
+        },
+      },
       interaction: {
         intersect: false,
       },
       radius: 4,
+      scales: {
+        x: {
+          beginAtZero: true,
+        },
+      },
     };
 
     const data = {
@@ -126,10 +153,10 @@ const Coins = () => {
     );
 
     return (
-      <div className="details-container">
-        <div className="coin-data">
+      <div>
+        <div className="coin-container">
           {coinDetails && (
-            <div>
+            <div className="details-container">
               <p>
                 <img className="coin-img" src={c.image.thumb} />
                 {c.name} <span>{c.symbol}</span>
@@ -142,7 +169,6 @@ const Coins = () => {
               </p>
               {/* <p>Id: {c.id}</p> */}
               {/* <p>Ticker: {c.symbol}</p> */}
-              {/* <p>Description: {c.description.en || "N/A"}</p> */}
               {c?.links && (
                 <div>
                   <p>
@@ -174,13 +200,11 @@ const Coins = () => {
               )}
               <p>
                 Market cap:{" "}
-                {c.market_data.market_cap.usd
-                  .toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                    minimumFractionDigits: 0,
-                  })
-                  }
+                {c.market_data.market_cap.usd.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                })}
               </p>
               <p>
                 Total volume:{" "}
@@ -238,8 +262,11 @@ const Coins = () => {
               <br />
             </div>
           )}
+          <div className="chart">{ChartComponent()}</div>
         </div>
-        {ChartComponent()}
+        <div>
+          <p>Description: {coinDetails.description.en || "N/A"}</p>
+        </div>
       </div>
     );
   };

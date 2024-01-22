@@ -57,18 +57,25 @@ text-align: center;}
     width: 250px;
     height: 25px;
 }
-.details-container{
+.coin-container{
     display: flex;
-
+    flex-direction: row;
 }
-.coin-data{
+.details-container{
     border-top: 2px lightgray solid;
     border-right: 2px lightgray solid;
     border-bottom: 2px lightgray solid;
+    max-width: 500px;
     display: flex;
+    flex-direction: column;
 }
 #current-price{
     font-size: 32px;
     font-weight: 600;
+}
+.chart{
+    width: 1800px;
+    /* background-color:  #27293D; */
+    background-color:  #1E1E2F;
 }
 .link-card{}
