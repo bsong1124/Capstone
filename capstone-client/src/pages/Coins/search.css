@@ -1,17 +1,18 @@
 .form{
     position: relative;
-    top: 50%;
+    top: 70px;
     left: 50%;
     transform: translate(-50%,-50%);
     transition: all 1s;
     width: 45px;
     height: 45px;
-    background: lavender;
+    background: #27293D;
     box-sizing: border-box;
     border-radius: 25px;
-    border: 2px solid #C652E8;
+    border: 2px solid rgb(75, 192, 140);
     padding: 5px;
 }
+/* #923cac */
 .search-bar{
     position: absolute;
     top: 0;
@@ -48,10 +49,11 @@
 .form:hover input,
 .form:valid input{
     display: block;
+    background-color: #27293D;
 }
 .form:hover .fa,
 .form:valid .fa{
-    background: #07051a;
+    background: #27293D;
     color: lavender;
 }
 .form:valid a {

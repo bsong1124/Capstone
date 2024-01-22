@@ -29,7 +29,7 @@ const Home = () => {
   );
 
   const renderPopular = () => (
-    <div>
+    <div className='home-container'>
       <div className="home-header-container">
         <p>Name</p>
         <p>Ticker</p>

@@ -129,7 +129,7 @@ const Coins = () => {
           {
             label: "Price Chart",
             data: priceRangeData.map((p) => p[1]),
-            borderColor: "rgb(75, 192, 192)",
+            borderColor: "rgb(75, 192, 140)",
             color: "black",
             backgroundColor: (ctx) => {
               const index = ctx.dataIndex;
@@ -137,12 +137,12 @@ const Coins = () => {
               const previousValue =
                 index > 0 ? ctx.dataset.data[index - 1] : null;
               return previousValue !== null && value > previousValue
-                ? "rgb(75, 192, 192)"
-                : "rgb(192,75,75)";
+                ? "rgb(75, 192, 140)"
+                : "rgb(146, 60, 172)";
             },
             segment: {
               borderColor: (ctx) =>
-                skipped(ctx, "rgb(0,0,0)") || down(ctx, "rgb(192,75,75)"),
+                skipped(ctx, "rgb(0,0,0)") || down(ctx, "rgb(146, 60, 172)"),
               borderDash: (ctx) => skipped(ctx, [6, 6]),
             },
             spanGaps: true,
@@ -268,7 +268,7 @@ const Coins = () => {
               <br />
             </div>
           )}
-          <div className="chart">{ChartComponent()}</div>
+          <div>{ChartComponent()}</div>
         </div>
         <div>
           <p>Description: {coinDetails.description.en || "N/A"}</p>

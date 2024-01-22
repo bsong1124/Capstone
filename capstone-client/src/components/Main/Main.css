@@ -7,16 +7,26 @@
     max-width: 25px;
 }
 .coin-card {
-    border: 1px solid #C652E8;
-    padding: 1rem;
+    /* border: 1px solid #893ca0; */
+    border: 1px solid #923cac;
+    padding: .8rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width:100%;
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease-in-out;
+    margin: 5px;
+    font-size: 20px;
+    background: #27293D;;
   }
-.coin-card a {
+.coin-card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+.coin-card a, .coin-card p {
     text-decoration: none;
     color: inherit;
+    background-color: #27293D;;
 }
 .one-day-change {
   color: red;
@@ -27,21 +37,36 @@
   display: flex;
   flex-direction: row;
   max-width: 1800px;
+  /* background: green; */
 }
 .coin-container{
     display: flex;
     flex-direction: column;
+    margin-top: 100px;
+    margin-left: 10%;
+    max-width: 80%;
+}
+.home-container{
+    position: relative;
+    top: 45px;
 }
 .home-header-container {
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
+    /* position: relative; */
+    max-width: 90%;
+    margin: auto;
+    margin-top: 90px;
+    font-weight: 600;
+    /* align-items: center; */
 }
 .card-elements{
     display: grid;
     grid-template-columns: repeat(5,1fr);
     grid-gap: 40px 10px;
     text-align: center;
+    /* background-color: #27293D;; */
 }
 .search-card-elements{
     display: grid;
@@ -61,7 +86,7 @@
 }
 .coin-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .details-container{
     border-top: 2px lavender;
@@ -77,9 +102,7 @@
 }
 .chart{
     width: 1800px;
-    /* background-color:  #27293D; */
-    background-color:  #1E1E2F;
-    
+    background: green; 
 }
 ::placeholder {
     color: #999; 
