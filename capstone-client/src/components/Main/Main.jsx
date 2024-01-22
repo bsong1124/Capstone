@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../../pages/Home";
 import Portfolio from "../../pages/Portfolio/Portfolio";
 import Profile from "../../pages/Profile/Profile";
-import Coins from "../../pages/Coins/Coins";
+import Coins from "../../pages/Coins/Search";
 import About from "../../pages/About";
 import { useEffect, useState } from "react";
 

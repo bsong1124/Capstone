@@ -5,7 +5,7 @@ import {
   createMyProfile,
   getMyProfile,
   editMyProfile,
-} from "../../utilities/coins-service";
+} from "../../utilities/user-service";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -43,7 +43,7 @@ const Profile = () => {
       console.log(err.message);
     }
   };
-//   console.log({ profile });
+  //   console.log({ profile });
 
   useEffect(() => {
     createProfile();
