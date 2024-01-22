@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router";
-import { createMyProfile } from "../../utilities/coins-service";
+import { createMyProfile, getMyProfile } from "../../utilities/coins-service";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -17,16 +17,28 @@ const Profile = () => {
         email: user.email,
         portfolio: [],
       });
+      //   console.log("WORKING");
+      //   console.log("working");
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  console.log({ user });
+  const getProfile = async () => {
+    const authId = user.sub.substring(user.sub.indexOf("|") + 1);
+    try {
+      const userProfile = await getMyProfile(authId);
+      setProfile(userProfile);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  console.log({ profile });
 
   useEffect(() => {
     createProfile();
-  }, []);
+    getProfile();
+  }, [isAuthenticated, user, setProfile]);
 
   if (!isAuthenticated) {
     return <Navigate to="/" />;
@@ -37,13 +49,13 @@ const Profile = () => {
   }
 
   return (
-    isAuthenticated && (
+    isAuthenticated &&
+    profile &&
       <div>
-        <img src={user.picture} alt={""} />
+        <img src={user.picture} />
         <h2>{user.name}</h2>
-        <p>{user.email}</p>
+        <p>{profile.email}</p>
       </div>
-    )
   );
 };
 

@@ -25,7 +25,6 @@ const Coins = () => {
     }
   };
 
-
   const handleChange = (e) => {
     // console.log('e', e.target.value)
     setCoinSearch(e.target.value);

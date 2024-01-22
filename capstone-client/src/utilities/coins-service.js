@@ -32,11 +32,22 @@ export async function searchCoin(q) {
 }
 
 export async function createMyProfile(data) {
-    console.log({data})
+  // console.log({data})
+  try {
+    const portfolio = coinsApi.createProfile(data);
+    return portfolio;
+  } catch (err) {
+    console.log(err.message);
+    throw err;
+  }
+}
+
+export async function getMyProfile(data) {
+    console.log('---SERVICE WORKING')
     try{
-        const portfolio = coinsApi.createProfile(data)
-        return portfolio
-    }catch(err) {
+        const profile = coinsApi.getProfile(data)
+        return profile
+    }catch(err){
         console.log(err.message)
         throw err
     }
