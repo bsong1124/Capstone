@@ -72,7 +72,7 @@ const SearchCoins = () => {
           <div key={idx} className="coin-card">
             <Link to={`/coins/${l.id}`} key={idx}>
               <p>
-                Name: {l.name} <img src={l.image} />
+                Name: {l.name} <img className="coin-img" src={l.image} />
               </p>
               <p>Id: {l.id}</p>
               <p>Ticker: {l.symbol}</p>
@@ -84,11 +84,13 @@ const SearchCoins = () => {
         ))}
       {searchedCoin &&
         searchedCoin.map((c, idx) => (
-          <div key={idx}>
-            <p>
-              Name: {c.name} <img src={c.thumb}></img>
-            </p>
-            <p>Ticker: {c.symbol}</p>
+          <div key={idx} className="coin-card">
+            <Link to={`/coins/${c.id}`} key={idx}>
+              <p>
+                Name: {c.name} <img src={c.thumb}></img>
+              </p>
+              <p>Ticker: {c.symbol}</p>
+            </Link>
           </div>
         ))}
     </div>

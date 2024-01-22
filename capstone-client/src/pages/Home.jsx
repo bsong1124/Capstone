@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { findPopular } from "../utilities/coins-service";
 
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
     try {
       const popularResponse = await findPopular();
       setPopularCoins(popularResponse);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (err) {
       console.log("error");
     }
@@ -31,20 +32,25 @@ const Home = () => {
 
   const renderPopular = () => (
     <div>
-    {popularCoins && popularCoins.map((p, idx) => (
-      <div key={idx}>
-        <p>Name: {p.item.name} <img src={p.item.thumb} className='coin-img'></img></p>
-        <p>Ticker: {p.item.symbol}</p>
-        <p>Price: {p.item.data.price}</p>
-        <p>Market Cap: {p.item.data.market_cap}</p>
-        <p>Total Volume: {p.item.data.total_volume}</p>
-      </div>
-    ))}
-  </div>
-  )
+      {popularCoins &&
+        popularCoins.map((p, idx) => (
+          <div className="coin-card" key={idx}>
+            <Link to={`/coins/${p.item.id}`} key={idx}>
+              <p>
+                Name: {p.item.name}{" "}
+                <img src={p.item.thumb} className="coin-img"></img>
+              </p>
+              <p>Ticker: {p.item.symbol}</p>
+              <p>Price: {p.item.data.price}</p>
+              <p>Market Cap: {p.item.data.market_cap}</p>
+              <p>Total Volume: {p.item.data.total_volume}</p>
+            </Link>
+          </div>
+        ))}
+    </div>
+  );
 
-  return (isLoading ? renderLoading() : renderPopular());
+  return isLoading ? renderLoading() : renderPopular();
 };
 
 export default Home;
-

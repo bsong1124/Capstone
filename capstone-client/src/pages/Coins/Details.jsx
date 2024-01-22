@@ -71,24 +71,32 @@ const Coins = () => {
             </p>
             <p>Id: {c.id}</p>
             <p>Ticker: {c.symbol}</p>
-            <p>Description: {c.description.en}</p>
+            <p>Description: {c.description.en || "N/A"}</p>
             {c?.links && (
               <div>
                 <p>
-                  Homepage:<a href={c.links.homepage[0]}> {c.links.homepage}</a>
+                  Homepage:{" "}
+                  <a href={c.links?.homepage?.[0]}>
+                    {" "}
+                    {c.links.homepage || "N/A"}
+                  </a>
                 </p>
                 <p>
                   Whitepaper:{" "}
-                  <a href={c.links.whitepaper}>{c.links.whitepaper}</a>
+                  <a href={c.links?.whitepaper?.[0]}>
+                    {c.links.whitepaper || "N/A"}
+                  </a>
                 </p>
                 <p>
                   Reddit:{" "}
-                  <a href={c.links.subreddit_url}>{c.links.subreddit_url}</a>
+                  <a href={c.links?.subreddit_url?.[0]}>
+                    {c.links.subreddit_url || "N/A"}
+                  </a>
                 </p>
                 <p>
                   Github:{" "}
-                  <a href={c.links.repos_url.github[0]}>
-                    {c.links.repos_url.github[0]}
+                  <a href={c.links?.repos_url?.github?.[0]}>
+                    {c.links.repos_url.github[0] || "N/A"}
                   </a>
                 </p>
               </div>
