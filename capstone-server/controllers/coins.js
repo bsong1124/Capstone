@@ -72,8 +72,18 @@ const getCoinDetails = async (req, res) => {
       method: "GET",
     });
     const coinData = await coinResponse.json();
-    console.log({ coinData });
-    res.json(coinData);
+
+    const rangeResponse = await fetch(
+      `${ROOT_URL}/coins/${q}/market_chart/range?vs_currency=usd&from=1704085200&to=1705726800${token}&precision=2`,
+      {
+        method: "GET",
+      }
+    );
+    const rangeData = await rangeResponse.json();
+    const priceRangeData = rangeData.prices.slice(0, 30);
+
+    console.log("PRICES", priceRangeData);
+    res.json({ coinData, priceRangeData });
   } catch (error) {
     console.log(err);
     res.json({ message: "error", error: res.statusText });
