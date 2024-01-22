@@ -5,13 +5,14 @@ const coinsCtrl = require("../controllers/coins");
 const usersCtrl = require("../controllers/user");
 
 router.get("/", coinsCtrl.getAllCoins);
-// router.delete("/profile", coinsCtrl.delete);
 router.get("/popular", coinsCtrl.getPopularCoins);
 router.get("/layer-1", coinsCtrl.getLayerOne);
 router.get("/search", coinsCtrl.searchCoins);
+router.get("/show", coinsCtrl.getCoinDetails);
+
 router.post("/profile", usersCtrl.createProfile);
 router.get("/profile", usersCtrl.getProfile);
 router.put("/profile", usersCtrl.editProfile);
-router.get("/show");
+// router.delete("/profile", coinsCtrl.delete);
 
 module.exports = router;

@@ -33,24 +33,24 @@ const getPopularCoins = async (req, res) => {
   }
 };
 
-const getCoin = async (req, res) => {
-  // const q = req.query.q
-  // try{
-  //     const coinResponse = await fetch(`${ROOT_URL}/coins/bitcoin/${token}`, {
-  //         method: "GET",
-  //     })
-  //     const coinData = await coinResponse.json()
-  //     res.json(coinData)
-  // }catch(error){
-  //     console.log(err)
-  //     res.json({message: 'error', error: res.statusText})
-  // }
+const getCoinDetails = async (req, res) => {
+  const q = req.query.q;
+  try {
+    const coinResponse = await fetch(`${ROOT_URL}/coins/${q}/${token}`, {
+      method: "GET",
+    });
+    const coinData = await coinResponse.json();
+    res.json(coinData);
+  } catch (error) {
+    console.log(err);
+    res.json({ message: "error", error: res.statusText });
+  }
 };
 
 const getLayerOne = async (req, res) => {
   try {
     const layerOneResponse = await fetch(
-      `${ROOT_URL}/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=10&page=1&sparkline=false/${token}`,
+      `${ROOT_URL}/coins/markets?vs_currency=usd&category=layer-1&order=market_cap_desc&per_page=15&page=1&sparkline=false/${token}`,
       {
         method: "GET",
       }
@@ -82,7 +82,7 @@ const searchCoins = async (req, res) => {
 module.exports = {
   getAllCoins,
   getPopularCoins,
-  getCoin,
+  getCoinDetails,
   getLayerOne,
   searchCoins,
 };
