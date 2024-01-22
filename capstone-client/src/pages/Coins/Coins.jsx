@@ -30,19 +30,19 @@ const Coins = () => {
     setCoinSearch(e.target.value);
   };
 
-//   console.log({ coinSearch });
+  //   console.log({ coinSearch });
 
   const getCoin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-    //   console.log("working");
+      //   console.log("working");
       const searchResponse = await searchCoin(coinSearch);
       setSearchedCoin(searchResponse);
     } catch (err) {
       console.log("error");
     }
   };
-    // console.log({ searchedCoin });
+  // console.log({ searchedCoin });
 
   async function handleRequest() {
     getLayerOneCoins();
@@ -63,7 +63,8 @@ const Coins = () => {
         />
         <button type="submit">Search</button>
       </form>
-      {layerOne && searchedCoin.length === 0 &&
+      {layerOne &&
+        searchedCoin.length === 0 &&
         layerOne.map((l, idx) => (
           <div key={idx}>
             <p>
@@ -75,13 +76,14 @@ const Coins = () => {
             <p>Volume: ${l.total_volume}</p>
           </div>
         ))}
-        {searchedCoin && searchedCoin.map((c, idx) => (
-            <div key={idx}>
-                <p>{c.name} <img src={c.thumb}></img></p>
-                <p>{c.symbol}</p>
-                <p>{c.name}</p>
-                <p>{c.name}</p>
-            </div>
+      {searchedCoin &&
+        searchedCoin.map((c, idx) => (
+          <div key={idx}>
+            <p>
+              Name: {c.name} <img src={c.thumb}></img>
+            </p>
+            <p>Ticker: {c.symbol}</p>
+          </div>
         ))}
     </div>
   );
