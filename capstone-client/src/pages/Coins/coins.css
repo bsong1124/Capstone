@@ -14,3 +14,9 @@
     vertical-align: middle;
     max-width: 24px;
   }
+.coin-img {
+  vertical-align: middle;
+}
+.one-day-change {
+  color: red;
+}
