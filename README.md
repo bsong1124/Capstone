@@ -1,4 +1,4 @@
-# Welcome to Stream Seek!
+# Bulls > Bears
 
 "Bulls > Bears is a comprehensive crypto chart website designed for users interested in tracking the performance of various cryptocurrencies. Our platform offers a user-friendly interface for exploring trending coins,
 providing valuable insights into their price movements and market trends.
