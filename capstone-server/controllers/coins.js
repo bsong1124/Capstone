@@ -33,20 +33,6 @@ const getPopularCoins = async (req, res) => {
   }
 };
 
-const getCoinDetails = async (req, res) => {
-  const q = req.query.q;
-  try {
-    const coinResponse = await fetch(`${ROOT_URL}/coins/${q}/${token}`, {
-      method: "GET",
-    });
-    const coinData = await coinResponse.json();
-    res.json(coinData);
-  } catch (error) {
-    console.log(err);
-    res.json({ message: "error", error: res.statusText });
-  }
-};
-
 const getLayerOne = async (req, res) => {
   try {
     const layerOneResponse = await fetch(
@@ -73,6 +59,21 @@ const searchCoins = async (req, res) => {
     const searchData = await searchResponse.json();
     console.log(searchData);
     res.json(searchData);
+  } catch (error) {
+    console.log(err);
+    res.json({ message: "error", error: res.statusText });
+  }
+};
+
+const getCoinDetails = async (req, res) => {
+  const q = req.query.q;
+  try {
+    const coinResponse = await fetch(`${ROOT_URL}/coins/${q}/${token}`, {
+      method: "GET",
+    });
+    const coinData = await coinResponse.json();
+    console.log({ coinData });
+    res.json(coinData);
   } catch (error) {
     console.log(err);
     res.json({ message: "error", error: res.statusText });
