@@ -28,7 +28,7 @@ export async function getProfile(data) {
   });
   if (profileResponse.ok) {
     const profileData = await profileResponse.json();
-    console.log("PROFILERESPONSE", profileData);
+    // console.log("PROFILERESPONSE", profileData);
     return profileData;
   } else {
     console.log(err.message);

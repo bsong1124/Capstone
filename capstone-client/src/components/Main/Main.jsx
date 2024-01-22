@@ -20,7 +20,6 @@ const Main = () => {
         <Route path="/coins/:id" element={<Coins />} />
         <Route path="/about" element={<About />} />
       </Routes>
-      <h1>Main Comp</h1>
     </div>
   );
 };

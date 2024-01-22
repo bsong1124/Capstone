@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+// import { useParams, useNavigate } from "react-router-dom";
 import {
   createMyProfile,
   getMyProfile,
@@ -12,6 +14,8 @@ const Profile = () => {
   const [profile, setProfile] = useState([]);
   const [editName, setEditName] = useState("");
   const [editEmail, setEditEmail] = useState("");
+
+  const navigate = useNavigate();
 
   const createProfile = async () => {
     const authId = user.sub.substring(user.sub.indexOf("|") + 1);
@@ -46,9 +50,11 @@ const Profile = () => {
   //   console.log({ profile });
 
   useEffect(() => {
-    createProfile();
-    getProfile();
-  }, []);
+    if (isAuthenticated && user) {
+      createProfile();
+      getProfile();
+    }
+  }, [isAuthenticated, user]);
 
   const handleName = (e) => {
     setEditName(e.target.value);
@@ -70,19 +76,27 @@ const Profile = () => {
     } catch (err) {
       console.log(err.message);
     }
+    navigate("/profile");
   };
 
-  if (!isAuthenticated) {
-    return <Navigate to="/" />;
-  }
+  //   if (!isAuthenticated) {
+  //     return <Navigate to="/profile" />;
+  //   }
 
-  if (isLoading) {
+  if (!isAuthenticated || isLoading) {
     return <div>Loading ...</div>;
   }
 
-  return (
+  const renderLoading = () => (
+    <section>
+      <h2>Loading...</h2>
+    </section>
+  );
+
+  const renderProfile = () =>
     isAuthenticated &&
-    profile && (
+    profile &&
+    !isLoading && (
       <div>
         <img src={user.picture} />
         <h2>{profile.name}</h2>
@@ -101,8 +115,9 @@ const Profile = () => {
           <button type="submit">Edit</button>
         </form>
       </div>
-    )
-  );
+    );
+
+  return isLoading ? renderLoading() : renderProfile();
 };
 
 export default Profile;
