@@ -7,10 +7,9 @@
     max-width: 25px;
 }
 .coin-card {
-    border: 1px solid #ddd;
+    border: 1px solid #C652E8;
     padding: 1rem;
     border-radius: 8px;
-    background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width:100%;
 
@@ -21,6 +20,8 @@
 }
 .one-day-change {
   color: red;
+  font-size: 18px;
+  vertical-align: middle;
 }
 .line{
   display: flex;
@@ -54,4 +55,27 @@ text-align: center;}
 .input-bar{
     width: 250px;
     height: 25px;
+    border-color: lavender;;
 }
+.coin-container{
+    display: flex;
+    flex-direction: row;
+}
+.details-container{
+    border-top: 2px lightgray solid;
+    border-right: 2px lightgray solid;
+    border-bottom: 2px lightgray solid;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+#current-price{
+    font-size: 32px;
+    font-weight: 600;
+}
+.chart{
+    width: 1800px;
+    /* background-color:  #27293D; */
+    background-color:  #1E1E2F;
+}
+.link-card{}
