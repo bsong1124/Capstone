@@ -43,12 +43,24 @@ export async function createMyProfile(data) {
 }
 
 export async function getMyProfile(data) {
-    console.log('---SERVICE WORKING')
-    try{
-        const profile = coinsApi.getProfile(data)
-        return profile
-    }catch(err){
-        console.log(err.message)
-        throw err
-    }
+  // console.log('---SERVICE WORKING')
+  try {
+    const profile = coinsApi.getProfile(data);
+    return profile;
+  } catch (err) {
+    console.log(err.message);
+    throw err;
+  }
+}
+
+export async function editMyProfile(data) {
+  console.log("---SERVICE WORKING");
+  console.log({ data });
+  try {
+    const profile = coinsApi.editProfile(data);
+    return profile;
+  } catch (err) {
+    console.log(err.message);
+    throw err;
+  }
 }
