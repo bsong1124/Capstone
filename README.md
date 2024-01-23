@@ -6,7 +6,7 @@ With a focus on simplicity and accessibility, Bulls > Bears does not facilitate 
 
 ## Trello
 
-https://trello.com/b/AJ18sO4h/project-4](https://trello.com/b/spWHODwG/capstone
+https://trello.com/b/spWHODwG/capstone
 
 ## Screenshots
 
